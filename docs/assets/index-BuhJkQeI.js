@@ -1177,7 +1177,7 @@ filter: opacity(0.8) brightness(1.1);
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: inter;
+    font-family: 'Inter';
     color: rgb(172, 174, 222);
     cursor: none;
     scroll-behavior: smooth;
