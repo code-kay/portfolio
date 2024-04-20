@@ -41,6 +41,7 @@ const View = styled.div`
   width: 100vw;
   height: 100vh;
   top: 0;
+  overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: none;
 `

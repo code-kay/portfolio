@@ -126,7 +126,7 @@ const CardImg = styled.img`
 `
 
 const CardContent = styled.p`
-    font-size: 1.6vw;
+    font-size: min(24px, 1.6vw);
     padding: 1.2vw 1.6vw;
     height: 100%;
     white-space: pre-line;

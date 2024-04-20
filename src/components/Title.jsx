@@ -13,7 +13,8 @@ const StyledTitle = styled(({ titleType: Component = 'h1', children, ...props })
     position: relative;
 
     @media (max-width: 768px) {
-        font-size: ${props => props.titleType === 'h3' ? '24px' : '32px'};
+        font-size: ${props => props.titleType === 'h3' ? '24px' : props.titleType === 'h2' ? '30px' : '32px'};
+        letter-spacing: 7px;
         justify-self: center;
     }
 

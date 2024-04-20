@@ -205,7 +205,8 @@ Error generating stack: `+i.message+`
     position: relative;
 
     @media (max-width: 768px) {
-        font-size: ${e=>e.titleType==="h3"?"24px":"32px"};
+        font-size: ${e=>e.titleType==="h3"?"24px":e.titleType==="h2"?"30px":"32px"};
+        letter-spacing: 7px;
         justify-self: center;
     }
 
@@ -932,7 +933,7 @@ Error generating stack: `+i.message+`
         height: 150px;
     }
 `,i1=R.p`
-    font-size: 1.6vw;
+    font-size: min(24px, 1.6vw);
     padding: 1.2vw 1.6vw;
     height: 100%;
     white-space: pre-line;
@@ -1196,6 +1197,7 @@ filter: opacity(0.8) brightness(1.1);
   width: 100vw;
   height: 100vh;
   top: 0;
+  overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: none;
 `,x1=R.main`
