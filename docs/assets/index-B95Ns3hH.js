@@ -114,6 +114,7 @@ Error generating stack: `+i.message+`
 `,pm=R.div`
     background-color: ${e=>e.$darkMode?"rgba(0, 0, 0, 0.45)":"rgba(255, 255, 255, 0.45)"};
     backdrop-filter: blur(200px);
+    -webkit-backdrop-filter: blur(200px);
     position: absolute;
     top: 0;
     left: 0;
@@ -287,6 +288,7 @@ Error generating stack: `+i.message+`
     top: 0;
     z-index: 9;
     backdrop-filter: blur(100px);
+    -webkit-backdrop-filter: blur(100px);
     background-color: ${e=>e.$darkMode?"rgba(0,0,0,0.8)":"rgba(255,255,255,0.1)"};
     mask-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
     pointer-events: none;

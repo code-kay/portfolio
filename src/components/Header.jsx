@@ -36,6 +36,7 @@ const Blur = styled.div`
     top: 0;
     z-index: 9;
     backdrop-filter: blur(100px);
+    -webkit-backdrop-filter: blur(100px);
     background-color: ${props => props.$darkMode ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.1)'};
     mask-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
     pointer-events: none;
