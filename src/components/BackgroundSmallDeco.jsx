@@ -2,12 +2,12 @@ import { useRef, useEffect } from 'react';
 import { useTheme } from "../context/ThemeContext";
 
 import styled from 'styled-components';
-import petal1 from '../assets/images/display/petal1.png'
-import petal2 from '../assets/images/display/petal2.png'
-import petal3 from '../assets/images/display/petal3.png'
-import smallLantern1 from '../assets/images/display/smallLantern1.png'
-import smallLantern2 from '../assets/images/display/smallLantern2.png'
-import smallLantern3 from '../assets/images/display/smallLantern3.png'
+import petal1 from '../assets/images/display/petal1.webp'
+import petal2 from '../assets/images/display/petal2.webp'
+import petal3 from '../assets/images/display/petal3.webp'
+import smallLantern1 from '../assets/images/display/smallLantern1.webp'
+import smallLantern2 from '../assets/images/display/smallLantern2.webp'
+import smallLantern3 from '../assets/images/display/smallLantern3.webp'
 
 const SmallDecoCanvas = styled.canvas`
     position: fixed;

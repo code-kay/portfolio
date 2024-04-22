@@ -1,22 +1,22 @@
-import seolgi1 from '../images/projects/100seolgi1.gif'
-import seolgi2 from '../images/projects/100seolgi2.gif'
-import seolgi3 from '../images/projects/100seolgi3.gif'
-import seolgi4 from '../images/projects/100seolgi4.gif'
+import seolgi1 from '../images/projects/100seolgi1.webp'
+import seolgi2 from '../images/projects/100seolgi2.webp'
+import seolgi3 from '../images/projects/100seolgi3.webp'
+import seolgi4 from '../images/projects/100seolgi4.webp'
 
-import storyhub1 from '../images/projects/storyhub1.gif'
-import storyhub2 from '../images/projects/storyhub2.gif'
-import storyhub3 from '../images/projects/storyhub3.gif'
-import storyhub4 from '../images/projects/storyhub4.gif'
+import storyhub1 from '../images/projects/storyhub1.webp'
+import storyhub2 from '../images/projects/storyhub2.webp'
+import storyhub3 from '../images/projects/storyhub3.webp'
+import storyhub4 from '../images/projects/storyhub4.webp'
 
 import ShapeOfVoice1 from '../images/projects/ShapeOfVoice1.gif'
 import ShapeOfVoice2 from '../images/projects/ShapeOfVoice2.gif'
 import ShapeOfVoice3 from '../images/projects/ShapeOfVoice3.gif'
 import ShapeOfVoice4 from '../images/projects/ShapeOfVoice4.gif'
 
-import math1 from '../images/projects/math1.gif'
-import math2 from '../images/projects/math2.gif'
+import math1 from '../images/projects/math1.webp'
+import math2 from '../images/projects/math2.webp'
 
-import lotto1 from '../images/projects/lotto1.gif'
+import lotto1 from '../images/projects/lotto1.webp'
 
 // projects template
 // {

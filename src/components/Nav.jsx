@@ -59,7 +59,7 @@ const TopButton = styled.button `
     right: 2.5vw;
     bottom: 2.5vw;
     animation: ${TopButtonAnimation} 4s infinite;
-    filter: drop-shadow(0 0 2vw rgba(255, 255, 255, 0.8));
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
 
     & div {
         color: white;
@@ -94,6 +94,7 @@ const TopButton = styled.button `
     & div:last-child {
         position: absolute;
         text-align: center;
+        font-weight: 600;
     }
 
     &:hover {
