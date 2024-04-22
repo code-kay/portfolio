@@ -172,12 +172,16 @@ function ContactCard ({ViewRef}) {
     const CardRef = useRef(null)
 
     useEffect(() => {
-        if (CardRef.current) {
-            const rect = CardRef.current.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            setCenter({ x: centerX, y: centerY });
+        const handleResize = () => {
+            if (CardRef.current) {
+                const rect = CardRef.current.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = ViewRef.current.scrollTop + rect.top + rect.height / 2;
+                setCenter({ x: centerX, y: centerY });
+            }
         }
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
     }, [CardRef]);
     
 
