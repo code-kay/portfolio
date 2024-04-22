@@ -237,7 +237,7 @@ function ProjectModal ({ modalProject, setModalProject, setIsModalOn }) {
                 <ModalImageContainer>
                     {currentProject.images.map((image, idx) => (
                         <ModalImage key={currentProject.name + '_image_' + idx}>
-                            <img src={image.img} />
+                            <img src={image.img} alt='' />
                             <div>✨{image.text}✨</div>
                         </ModalImage>
                     ))}

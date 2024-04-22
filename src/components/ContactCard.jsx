@@ -195,7 +195,7 @@ function ContactCard ({ViewRef}) {
             onMouseLeave={()=> setIsHovering(false)}
         >
             <CardImg>
-                <img src={bear} />
+                <img src={bear} alt="profile image" />
             </CardImg>
             <CardSection>
                 <CardName>Ahyoon Kim</CardName>
