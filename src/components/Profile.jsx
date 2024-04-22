@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useTheme } from "../context/ThemeContext"
-import profileImg from "../assets/images/display/bear.jpeg"
+import profileImg from "../assets/images/display/bear.webp"
 
 const ProfileImg = styled.img`
     border-radius: 100%;

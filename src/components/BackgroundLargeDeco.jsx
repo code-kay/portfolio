@@ -1,9 +1,9 @@
 import styled, { keyframes } from "styled-components";
 import { useTheme } from "../context/ThemeContext";
-import flower1 from "../assets/images/display/flower1.png"
-import flower2 from "../assets/images/display/flower2.png"
-import lantern1 from "../assets/images/display/lantern1.png"
-import lantern2 from "../assets/images/display/lantern2.png"
+import flower1 from "../assets/images/display/flower1.webp"
+import flower2 from "../assets/images/display/flower2.webp"
+import lantern1 from "../assets/images/display/lantern1.webp"
+import lantern2 from "../assets/images/display/lantern2.webp"
 
 
 const PartsContainer = styled.div`

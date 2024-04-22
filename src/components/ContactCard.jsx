@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled, { keyframes, css } from "styled-components";
-import paperPattern from "../assets/images/display/paperPattern.png"
-import bear from "../assets/images/display/bear-transparent.png"
+import paperPattern from "../assets/images/display/paperPattern.webp"
+import bear from "../assets/images/display/bear-transparent.webp"
 import { useMousePosition } from "../context/MousePositonContext";
 
 const CardHoverAnimation = keyframes`

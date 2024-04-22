@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import paper2 from "../assets/images/display/paper2.webp"
+import paper from "../assets/images/display/paper.webp"
 import { useRef, useState } from "react";
 import { projects } from "../assets/content/projects";
 
@@ -88,7 +88,7 @@ const Modal = styled.article`
     margin: 10vh 0;
     width: 80vw;
     padding: max(4vw, 24px);
-    background-image: url("${paper2}");
+    background-image: url("${paper}");
     background-size: cover;
 `
 
