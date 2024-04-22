@@ -20,12 +20,12 @@ const StyledHeader = styled.header`
     z-index: 10;
 
     @media (max-width: 768px) {
-        height: 124px;
+        padding: 0;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         padding-bottom: 0;
-        gap: 0px;
+        gap: 0;
         align-items: end;
     }
 `
@@ -40,10 +40,6 @@ const Blur = styled.div`
     background-color: ${props => props.$darkMode ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.1)'};
     mask-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
     pointer-events: none;
-
-    @media (max-width: 768px) {
-        height: 240px;
-    }
 `
 
 const Header = forwardRef(({currentPart, scrollPoints, ViewRef, refs}, ref) => {

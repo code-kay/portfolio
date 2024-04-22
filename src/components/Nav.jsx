@@ -41,30 +41,16 @@ const NavButton = styled.button`
 function Nav ({currentPart, scrollPoints, ViewRef, refs}) {
     const navArr = ['Information', 'Project', 'Contact']
     const [ selected, setSelected ] = useState(0)
-    const [isWide, setIsWide] = useState(window.innerWidth > 768);
-    const {InformationRef, ProjectRef} = refs
 
     useEffect(()=> {
         setSelected(currentPart)
     }, [currentPart])
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsWide(window.innerWidth > 768);
-        };
-    
-        window.addEventListener('resize', handleResize);
-    
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
     return (
         <NavContainer>
             {navArr.map((el, idx) => <NavButton key={'NavButton_' + el} $isSelected={selected === idx} onClick={() => {
                 setSelected(idx)
-                ViewRef.current.scrollBy({top: scrollPoints[el + 'Top'] - (isWide ? 120 : 150)})
+                ViewRef.current.scrollBy({top: scrollPoints[`ref${idx}Top`] - 120 })
             }}>{el.toUpperCase()}</NavButton>)}
         </NavContainer>
     )
