@@ -25,11 +25,11 @@ const Card = styled.section.attrs(props => (
         }
     } : {
         style: {
-            transform: `rotateX(${(props.$mousePosition.y - props.$center.y) / 20}deg) rotateY(${(props.$mousePosition.x - props.$center.x) / 20}deg)`,
+            transform: `rotateX(${(props.$mousePosition.y + props.$viewScrollTop - props.$center.y) / 20}deg) rotateY(${(props.$mousePosition.x - props.$center.x) / 20}deg)`,
             borderRight: `${(props.$mousePosition.x - props.$center.x) / 1200}vw solid rgba(100,100,100,0.5)`,
             borderLeft: `${(props.$center.x - props.$mousePosition.x) / 1200}vw solid rgba(100,100,100,0.5)`,
-            borderTop: `${(props.$mousePosition.y - props.$center.y) / 1000}vw solid white`,
-            borderBottom: `${(props.$center.y - props.$mousePosition.y) / 1000}vw solid rgba(100,100,100,0.7)`
+            borderTop: `${(props.$mousePosition.y + props.$viewScrollTop - props.$center.y) / 1000}vw solid white`,
+            borderBottom: `${(props.$center.y - props.$viewScrollTop - props.$mousePosition.y) / 1000}vw solid rgba(100,100,100,0.7)`
         }
     }
 ))`
@@ -165,10 +165,10 @@ mix-blend-mode: multiply;
 filter: opacity(0.8) brightness(1.1);
 `
 
-function ContactCard () {
-    const [center, setCenter] = useState({ x: 0, y: 0 })
-    const [isHovering, setIsHovering] = useState(false)
+function ContactCard ({ViewRef}) {
     const mousePosition = useMousePosition()
+    const [center, setCenter] = useState({ x: 0, y: 0 });
+    const [isHovering, setIsHovering] = useState(false);
     const CardRef = useRef(null)
 
     useEffect(() => {
@@ -184,6 +184,7 @@ function ContactCard () {
     return(
         <Card ref={CardRef}
             $mousePosition={mousePosition}
+            $viewScrollTop={ViewRef.current ? ViewRef.current.scrollTop : 0}
             $center={center}
             $isHovering={isHovering}
             onMouseEnter={()=> setIsHovering(true)}

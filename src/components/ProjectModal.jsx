@@ -33,7 +33,8 @@ const ModalContainer = styled.div`
     display:flex;
     justify-content:center;
     align-items: start;
-    overflow: auto;
+    overflow-X: hidden;
+    overflow-Y: auto;
     scrollbar-width: none;
     filter: drop-shadow(30px 30px 100px rgba(0,0,0,0.9));
     animation: ${props => props.$isClosing ? modalClose : modalOpen} 1s 1 forwards;

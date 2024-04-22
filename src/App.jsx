@@ -100,7 +100,7 @@ function App() {
           </PartContainer>
           <PartContainer ref={ContactRef} >
             <Title titleType='h2' content='CONTACT' />
-            <ContactCard />            
+            <ContactCard ViewRef={ViewRef}/>            
           </PartContainer>
         </MainContainer>
         <Footer />
