@@ -66,7 +66,7 @@ const Mountain = styled.div`
     }
     &:last-child {
         transform: none;
-        width: 160vw;
+        width: 130vw;
         top: 15vw;
         left: -30vw;
         border-radius: 0;

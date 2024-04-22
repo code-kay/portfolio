@@ -16,6 +16,7 @@ const TabContainer = styled.ul`
 `
 
 const TabButton = styled.li`
+    font-weight: 300;
     padding: 0 10px;
     border-bottom: 3px solid transparent;
     ${props => props.$isSelected ? 'border-bottom: 3px solid rgb(172, 174, 222);' : ''}
@@ -29,6 +30,7 @@ const TabButton = styled.li`
 
     @media (max-width: 768px) {
         cursor: pointer;
+        padding: 0 6px;
     }
 `
 

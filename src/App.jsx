@@ -13,6 +13,7 @@ import ProjectCard from './components/ProjectCard'
 import { useEffect, useRef, useState } from 'react'
 import ContactCard from './components/ContactCard'
 import Footer from './components/Footer'
+import useScrollPoints from './hook/useScrollPoints'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -71,45 +72,13 @@ const PartContainer = styled.section`
 
 function App() {
   const { darkMode } = useTheme();
-  const [ currentPart, setCurrentPart ] = useState(0)
-  const [ scrollPoints, setScrollPoints ] = useState({})
   const ViewRef = useRef(null)
   const HeaderRef = useRef(null)
   const InformationRef = useRef(null)
   const ProjectRef = useRef(null)
   const ContactRef = useRef(null)
 
-
-  useEffect(()=> {
-    let handleScroll= () => {}
-    if (HeaderRef && InformationRef && ProjectRef) {
-
-      handleScroll = () => {
-        const newScrollPoints = { 
-          HeaderBottom: HeaderRef.current.getBoundingClientRect().bottom,
-          InformationTop: InformationRef.current.getBoundingClientRect().top,
-          InformationBottom: InformationRef.current.getBoundingClientRect().bottom,
-          ProjectTop: ProjectRef.current.getBoundingClientRect().top,
-          ProjectBottom: ProjectRef.current.getBoundingClientRect().bottom,
-          ContactTop: ContactRef.current.getBoundingClientRect().top,
-          ContactBottom: ContactRef.current.getBoundingClientRect().bottom
-        }
-        setScrollPoints(newScrollPoints)
-
-        if (newScrollPoints.HeaderBottom < newScrollPoints.InformationBottom) {
-          setCurrentPart(0)
-        } else if ( newScrollPoints.HeaderBottom < newScrollPoints.ProjectBottom ) {
-          setCurrentPart(1)
-        } else if ( newScrollPoints.HeaderBottom < newScrollPoints.ContactBottom) {
-          setCurrentPart(2)
-        }
-      }
-
-      ViewRef.current.addEventListener('scroll', handleScroll);
-    }
-
-    return () => ViewRef.current.removeEventListener('scroll', handleScroll);
-  }, [])
+  const { scrollPoints, currentPart } = useScrollPoints(ViewRef, HeaderRef, [InformationRef, ProjectRef, ContactRef])
 
   return (
     <>
@@ -131,7 +100,7 @@ function App() {
           </PartContainer>
           <PartContainer ref={ContactRef} >
             <Title titleType='h2' content='CONTACT' />
-            <ContactCard ViewRef={ViewRef} />            
+            <ContactCard ViewRef={ViewRef}/>            
           </PartContainer>
         </MainContainer>
         <Footer />

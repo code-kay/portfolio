@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import styled, { keyframes, css } from "styled-components";
 import paperPattern from "../assets/images/display/paperPattern.png"
 import bear from "../assets/images/display/bear-transparent.png"
+import { useMousePosition } from "../context/MousePositonContext";
 
 const CardHoverAnimation = keyframes`
     30%{
@@ -24,11 +25,11 @@ const Card = styled.section.attrs(props => (
         }
     } : {
         style: {
-            transform: `rotateX(${(props.$mousePosition.y - props.$center.y) / 20}deg) rotateY(${(props.$mousePosition.x - props.$center.x) / 20}deg)`,
+            transform: `rotateX(${(props.$mousePosition.y + props.$viewScrollTop - props.$center.y) / 20}deg) rotateY(${(props.$mousePosition.x - props.$center.x) / 20}deg)`,
             borderRight: `${(props.$mousePosition.x - props.$center.x) / 1200}vw solid rgba(100,100,100,0.5)`,
             borderLeft: `${(props.$center.x - props.$mousePosition.x) / 1200}vw solid rgba(100,100,100,0.5)`,
-            borderTop: `${(props.$mousePosition.y - props.$center.y) / 1000}vw solid white`,
-            borderBottom: `${(props.$center.y - props.$mousePosition.y) / 1000}vw solid rgba(100,100,100,0.7)`
+            borderTop: `${(props.$mousePosition.y + props.$viewScrollTop - props.$center.y) / 1000}vw solid white`,
+            borderBottom: `${(props.$center.y - props.$viewScrollTop - props.$mousePosition.y) / 1000}vw solid rgba(100,100,100,0.7)`
         }
     }
 ))`
@@ -165,36 +166,29 @@ filter: opacity(0.8) brightness(1.1);
 `
 
 function ContactCard ({ViewRef}) {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const mousePosition = useMousePosition()
     const [center, setCenter] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
     const CardRef = useRef(null)
 
     useEffect(() => {
-        const handleMouseMove = event => {
-            const rect = ViewRef.current.getBoundingClientRect();
-            setMousePosition({ x: event.clientX, y: ViewRef.current.scrollTop + event.clientY});
-        };
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, []);
-
-    useEffect(() => {
-        if (CardRef.current) {
-            const rect = CardRef.current.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            setCenter({ x: centerX, y: centerY });
-            if (!mousePosition.x) setMousePosition({x: centerX, y:centerY})
+        const handleResize = () => {
+            if (CardRef.current) {
+                const rect = CardRef.current.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = ViewRef.current.scrollTop + rect.top + rect.height / 2;
+                setCenter({ x: centerX, y: centerY });
+            }
         }
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
     }, [CardRef]);
     
 
     return(
         <Card ref={CardRef}
             $mousePosition={mousePosition}
+            $viewScrollTop={ViewRef.current ? ViewRef.current.scrollTop : 0}
             $center={center}
             $isHovering={isHovering}
             onMouseEnter={()=> setIsHovering(true)}

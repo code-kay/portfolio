@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import styled, {keyframes} from 'styled-components';
 import { ToggleButton } from './Toggle';
 import { useTheme } from '../context/ThemeContext';
+import { useMousePosition } from '../context/MousePositonContext';
 
 const breathAnimation = keyframes`
     50% {
@@ -34,21 +35,9 @@ const CursorContainer = styled.div.attrs(props => ({
 `;
 
 function Cursor() {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isWide, setIsWide] = useState(window.innerWidth > 768);
+    const mousePosition = useMousePosition()
     const { darkMode } = useTheme();
-
-    useEffect(() => {
-        const handleMouseMove = event => {
-            setMousePosition({ x: event.clientX, y: event.clientY });
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, []);
 
     useEffect(() => {
         const handleResize = () => {
