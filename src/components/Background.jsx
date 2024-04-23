@@ -1,55 +1,6 @@
-import styled, { keyframes } from 'styled-components'
-import { useTheme } from '../context/ThemeContext';
-import BackgroundSmallDeco from './BackgroundSmallDeco'
-
-const circle1Animation = keyframes`
-    33%{
-        top: -20%;
-        left: -10%;
-        transform: scale(0.8);
-    }
-    66%{
-        top: 60%;
-        left: 20%;
-        transform: scale(0.7);
-    }
-    100%{
-        top: 0%;
-        left: 50%;
-    }
-`
-const circle2Animation = keyframes`
-    33%{
-        top: 70%;
-        left: 20%;
-        transform: scale(0.7);
-    }
-    66%{
-        top: 0%;
-        left: 60%;
-        transform: scale(1.4);
-    }
-    100%{
-        top: 0;
-        left: 0;
-    }
-`
-const circle3Animation = keyframes`
-    33%{
-        top: 20%;
-        left: 70%;
-        transform: scale(1.2);
-    }
-    66%{
-        top: 0%;
-        left: -10%;
-        transform: scale(1.4);
-    }
-    100%{
-        top: 50%;
-        left: 10%;
-    }
-`
+import styled, { keyframes } from "styled-components"
+import BackgroundSmallDeco from "./BackgroundSmallDeco"
+import { useTheme } from "../context/ThemeContext"
 
 const BackgroundContainer = styled.div`
     width: 100vw;
@@ -57,44 +8,35 @@ const BackgroundContainer = styled.div`
     position: fixed;
     overflow: hidden;
     z-index: -1;
-    ${props => props.$darkMode ? 'background-color: black;' : ''}
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    background-color: ${props => props.$darkMode ? 'black' : 'white'};
     transition: background-color 2s;
+`
 
-    & div:nth-child(1) {
-        top: 0%;
-        left: 50%;
-        animation: ${circle1Animation} 15s linear infinite;
+const BackgroundRotateAnimation = keyframes`
+    50% {
+        transform: rotate(180deg);
     }
-    & div:nth-child(2) {
-        top: 0;
-        left: 0;
-        animation: ${circle2Animation} 15s linear infinite;
-    }
-    & div:nth-child(3) {
-        top: 50%;
-        left: 10%;
-        animation: ${circle3Animation} 15s linear infinite;    
+    100% {
+        transform: rotate(360deg);
     }
 `
 
-const Circle = styled.div`
-    filter:blur(200px);
-    background-color: ${props => props.color || 'transparent'};
-    height: ${props => props.height || 0};
-    width: ${props => props.width || 0};
-    border-radius: 100%;
-    position: absolute;
-    transition: background-color 1s;
+const BackgroundColor = styled.div`
+    width: max(100vw, 100vh);
+    height: max(100vw, 100vh);
+    background: conic-gradient(${ props => props.$darkMode ? 'from 90deg at 50% 50%, rgba(255, 0, 184, 0.4) 0%, rgba(202, 230, 255, 0) 12%, rgba(4, 80, 65, 0.5) 24%, rgba(4, 80, 65, 0.5) 36%, rgba(202, 230, 255, 0) 50%, rgba(21, 129, 255, 0.4) 60%, rgba(202, 230, 255, 0) 70%, rgba(255, 0, 184, 0.2) 100%' : 'from 90deg at 50% 50%, rgba(202, 230, 255, 1) 0%, rgba(202, 230, 255, 0) 12%, rgba(255, 240, 202, 1) 24%, rgba(255, 240, 202, 1) 36%, rgba(202, 230, 255, 0) 50%, rgba(255, 202, 221, 1) 60%, rgba(202, 230, 255, 0) 70%, rgba(202, 230, 255, 1) 100%'});
+    filter: blur(16vw);
+    animation: ${BackgroundRotateAnimation} 10s linear infinite;
 `
 
-function Background() {
-    const { darkMode } = useTheme();
-
+function Background () {
+    const { darkMode } = useTheme()
     return (
-        <BackgroundContainer id='background' $darkMode={darkMode} aria-hidden={true} >
-            <Circle color={darkMode ? 'rgba(103, 8, 74, 0.5)' : 'rgba(135, 206, 235, 0.5)'} width={'80vw'} height={'70vw'} />
-            <Circle color={darkMode ? 'rgba(12, 52, 103, 0.5)' : 'rgba(255, 192, 203, 0.5)'} width={'50vw'} height={'50vh'} />
-            <Circle color={darkMode ? 'rgba(4, 80, 65, 0.5)' : 'rgba(255, 255, 166, 0.5)'} width={'50vh'} height={'50vh'}></Circle>
+        <BackgroundContainer $darkMode={darkMode} >
+            <BackgroundColor $darkMode={darkMode} />
             <BackgroundSmallDeco />
         </BackgroundContainer>
     )

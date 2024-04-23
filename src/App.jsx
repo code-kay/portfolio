@@ -5,14 +5,6 @@ import useScrollPoints from './hook/useScrollPoints'
 
 import Background from './components/Background'
 import Header from './components/Header'
-// import BackgroundLargeDeco from './components/BackgroundLargeDeco'
-// import Intro from './components/Intro'
-// import Title from './components/Title'
-// import Profile from './components/Profile'
-// import SkillSet from './components/SkillSet'
-// import Cursor from './components/Cursor'
-// import ProjectCard from './components/ProjectCard'
-// import ContactCard from './components/ContactCard'
 import Footer from './components/Footer'
 
 const BackgroundLargeDeco = lazy(()=> import('./components/BackgroundLargeDeco'))
