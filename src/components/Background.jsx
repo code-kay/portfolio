@@ -81,6 +81,7 @@ const Blur = styled.div`
     background-color: ${props => props.$darkMode ? 'rgba(0, 0, 0, 0.45)' : 'rgba(255, 255, 255, 0.45)' };
     backdrop-filter: blur(200px);
     -webkit-backdrop-filter: blur(200px);
+    transform: translate3d(0,0,0);
     position: absolute;
     top: 0;
     left: 0;
