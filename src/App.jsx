@@ -1,19 +1,28 @@
+import { useRef, Suspense, lazy } from 'react'
 import styled,  { createGlobalStyle }  from 'styled-components'
 import { useTheme } from "./context/ThemeContext"
+import useScrollPoints from './hook/useScrollPoints'
 
 import Background from './components/Background'
 import Header from './components/Header'
-import BackgroundLargeDeco from './components/BackgroundLargeDeco'
-import Intro from './components/Intro'
-import Title from './components/Title'
-import Profile from './components/Profile'
-import SkillSet from './components/SkillSet'
-import Cursor from './components/Cursor'
-import ProjectCard from './components/ProjectCard'
-import { useEffect, useRef, useState } from 'react'
-import ContactCard from './components/ContactCard'
+// import BackgroundLargeDeco from './components/BackgroundLargeDeco'
+// import Intro from './components/Intro'
+// import Title from './components/Title'
+// import Profile from './components/Profile'
+// import SkillSet from './components/SkillSet'
+// import Cursor from './components/Cursor'
+// import ProjectCard from './components/ProjectCard'
+// import ContactCard from './components/ContactCard'
 import Footer from './components/Footer'
-import useScrollPoints from './hook/useScrollPoints'
+
+const BackgroundLargeDeco = lazy(()=> import('./components/BackgroundLargeDeco'))
+const Intro = lazy(()=> import('./components/Intro'))
+const Title = lazy(()=> import('./components/Title'))
+const Profile = lazy(()=> import('./components/Profile'))
+const SkillSet = lazy(()=> import('./components/SkillSet'))
+const Cursor = lazy(()=> import('./components/Cursor'))
+const ProjectCard = lazy(()=> import('./components/ProjectCard'))
+const ContactCard = lazy(()=> import('./components/ContactCard'))
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -84,27 +93,29 @@ function App() {
     <>
       <GlobalStyle $darkMode={darkMode} />
       <View ref={ViewRef} >
+        <Background />
         <Header currentPart={currentPart} ref={HeaderRef} scrollPoints={scrollPoints} ViewRef={ViewRef} refs={{InformationRef, ProjectRef, ContactRef}}/>
-        <MainContainer>
-          <Background />
-          <BackgroundLargeDeco aria-hidden={true} />
-          <Intro />
-          <PartContainer ref={InformationRef} >
-            <Title titleType='h2' content='INFORMATION' />
-            <Profile />
-            <SkillSet />
-          </PartContainer>
-          <PartContainer ref={ProjectRef} >
-            <Title titleType='h2' content='PROJECT' />
-            <ProjectCard />
-          </PartContainer>
-          <PartContainer ref={ContactRef} >
-            <Title titleType='h2' content='CONTACT' />
-            <ContactCard ViewRef={ViewRef}/>            
-          </PartContainer>
-        </MainContainer>
-        <Footer />
-        <Cursor />
+        <Suspense fallback={<div>Loading...</div>}>
+          <MainContainer>
+            <BackgroundLargeDeco aria-hidden={true} />
+            <Intro />
+            <PartContainer ref={InformationRef} >
+              <Title titleType='h2' content='INFORMATION' />
+              <Profile />
+              <SkillSet />
+            </PartContainer>
+            <PartContainer ref={ProjectRef} >
+              <Title titleType='h2' content='PROJECT' />
+              <ProjectCard />
+            </PartContainer>
+            <PartContainer ref={ContactRef} >
+              <Title titleType='h2' content='CONTACT' />
+              <ContactCard ViewRef={ViewRef}/>            
+            </PartContainer>
+          </MainContainer>
+          <Footer />
+          <Cursor />
+        </Suspense>
       </View>
     </>
   )

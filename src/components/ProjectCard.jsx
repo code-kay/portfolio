@@ -185,7 +185,7 @@ function ProjectCard () {
                     }} >
                         <Tape />
                         <CardTitle>{project.name}</CardTitle>
-                        <CardImg src={project.images[0].img}/>
+                        <CardImg src={project.images[0].img} alt={project.name + ' 화면 이미지'}/>
                         <CardContent>{project.explanation}</CardContent>
                         <Tape />
                     </Card>
