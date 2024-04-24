@@ -6,10 +6,10 @@ import { useMousePosition } from '../context/MousePositonContext';
 
 const breathAnimation = keyframes`
     50% {
-        transform: scale(2) translate(-30%, -30%);
+        transform: scale(2);
     }
     100% {
-        transform: scale(1) translate(-50%, -50%);
+        transform: scale(1);
     }
 `;
 
@@ -17,22 +17,24 @@ const breathAnimation = keyframes`
 // 최적화 굳굳~~~
 const CursorContainer = styled.div.attrs(props => ({
     style: {
-        left: `${props.$mousePosition.x}px`,
-        top: `${props.$mousePosition.y}px`,
+        transform: `translate(${props.$mousePosition.x - 13}px, ${props.$mousePosition.y - 13}px) scale(1)`,
     }
 }))`
     position: fixed;
+    top:0;
     z-index: 1000;
     width: 26px;
     height: 26px;
-    transform: translate(-50%, -50%);
     pointer-events: none;
-    animation: ${breathAnimation} 2s infinite;
 
     @media (max-width: 768px) {
         display: none;
     }
 `;
+
+const CursorPointer = styled(ToggleButton)`
+    animation: ${breathAnimation} 2s infinite;
+`
 
 function Cursor() {
     const [isWide, setIsWide] = useState(window.innerWidth > 768);
@@ -54,17 +56,17 @@ function Cursor() {
     // toggleButton이 받는 props가 변하지 않아도 Cursor가 마우스 커서 위치 변경 때문에 리렌더링 될 때 같이 리렌더링 되는 현상을 막아줄 수 있다.
     // useMemo.. 너 이렇게 쓰는거였구나?! 함수를 왜 저장하나 했어.
     const toggleButtonMemo = useMemo(() => (
-        <ToggleButton $darkMode={darkMode}>
+        <CursorPointer $darkMode={darkMode}>
             <span></span>
             <span></span>
             <span></span>
-        </ToggleButton>
+        </CursorPointer>
     ), [darkMode]);
 
     return (
         <>
             {isWide && (
-                <CursorContainer $mousePosition={mousePosition}>
+                <CursorContainer id='cursor' $mousePosition={mousePosition}>
                     {toggleButtonMemo}
                 </CursorContainer>
             )}

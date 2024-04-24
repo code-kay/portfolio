@@ -1,4 +1,4 @@
-import{r as n,j as t}from"./vendor-react-BmTAz-yb.js";import{h as g,u as o}from"./vendor-styled-components-etjvLBh8.js";import{a as u}from"./index-DVM6yPFD.js";import"./vendor-tslib-B7u9K5VY.js";import"./vendor-@emotion-BWzHn38B.js";import"./vendor-stylis-DinRj2j6.js";import"./vendor-react-dom-DIoqIW_m.js";import"./vendor-scheduler-CzFDRTuY.js";const b="/portfolio/assets/paperPattern-CEOUZ3bX.webp",p="/portfolio/assets/bear-transparent-4w3szYkN.webp",$=g`
+import{r as n,j as t}from"./vendor-react-BmTAz-yb.js";import{h as g,u as o}from"./vendor-styled-components-etjvLBh8.js";import{a as u}from"./index-BZSF6gKr.js";import"./vendor-tslib-B7u9K5VY.js";import"./vendor-@emotion-BWzHn38B.js";import"./vendor-stylis-DinRj2j6.js";import"./vendor-react-dom-DIoqIW_m.js";import"./vendor-scheduler-CzFDRTuY.js";const b="/portfolio/assets/paperPattern-CEOUZ3bX.webp",p="/portfolio/assets/bear-transparent-4w3szYkN.webp",$=g`
     30%{
         transform: scale(1.05);
         filter: drop-shadow(0.5vw 0.5vw 4vw rgba(172, 174, 222, 0.8));
@@ -7,7 +7,7 @@ import{r as n,j as t}from"./vendor-react-BmTAz-yb.js";import{h as g,u as o}from"
     60% {
         transform: scale(1);
     }
-`,y=o.section.attrs(e=>e.$center.y===0||e.$isHovering?{style:{transform:"rotateX(0deg) rotateY(0deg)",filter:"drop-shadow(0 0 4vw rgba(172, 174, 222, 0.5))",boxShadow:"0 0 0.3vw 0.3vw rgba(172, 174, 222)",transition:"transform 0.3s, filter 0.3s, box-shadow 0.3s"}}:{style:{transform:`rotateX(${(e.$mousePosition.y+e.$viewScrollTop-e.$center.y)/20}deg) rotateY(${(e.$mousePosition.x-e.$center.x)/20}deg)`,borderRight:`${(e.$mousePosition.x-e.$center.x)/1200}vw solid rgba(100,100,100,0.5)`,borderLeft:`${(e.$center.x-e.$mousePosition.x)/1200}vw solid rgba(100,100,100,0.5)`,borderTop:`${(e.$mousePosition.y+e.$viewScrollTop-e.$center.y)/1e3}vw solid white`,borderBottom:`${(e.$center.y-e.$viewScrollTop-e.$mousePosition.y)/1e3}vw solid rgba(100,100,100,0.7)`}})`
+`,y=o.section.attrs(e=>e.$center.y===0||e.$isHovering?{style:{transform:"rotateX(0deg) rotateY(0deg)",filter:"drop-shadow(0 0 4vw rgba(172, 174, 222, 0.5))",boxShadow:"0 0 0.3vw 0.3vw rgba(172, 174, 222)",transition:"transform 0.3s, filter 0.3s, box-shadow 0.3s"}}:{style:{transform:`rotateX(${(e.$mousePosition.y+e.$viewScrollTop-e.$center.y)/20}deg) rotateY(${(e.$mousePosition.x-e.$center.x)/20}deg)`,borderLeft:`${(e.$mousePosition.x-e.$center.x)/1200}vw solid rgba(100,100,100,0.5)`,borderRight:`${(e.$center.x-e.$mousePosition.x)/1200}vw solid rgba(100,100,100,0.5)`,borderTop:`${(e.$mousePosition.y+e.$viewScrollTop-e.$center.y)/1e3}vw solid white`,borderBottom:`${(e.$center.y-e.$viewScrollTop-e.$mousePosition.y)/1e3}vw solid rgba(100,100,100,0.7)`}})`
     @font-face {
         font-family: 'KNPSKkomi-Regular00';
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/KNPSKkomi-Regular00.woff') format('woff');
@@ -66,7 +66,7 @@ import{r as n,j as t}from"./vendor-react-BmTAz-yb.js";import{h as g,u as o}from"
             border-bottom: 6px groove #8899c5;
         }
     }
-`,s=o.section`
+`,a=o.section`
 `,j=o.h1`
     font-size: 3.6vw;
     color: white;
@@ -85,13 +85,13 @@ import{r as n,j as t}from"./vendor-react-BmTAz-yb.js";import{h as g,u as o}from"
     @media (max-width: 768px) {
         font-size: 17px;
     }
-`,a=o.p`
+`,d=o.p`
     font-size: 1.6vw;
     margin-top: -0.5vw;
     @media (max-width: 768px) {
         font-size: 12.5px;
     }
-`,P=o.div`
+`,C=o.div`
         position: absolute;
         left: 6%;
         top: 8%;
@@ -117,7 +117,7 @@ import{r as n,j as t}from"./vendor-react-BmTAz-yb.js";import{h as g,u as o}from"
             width: 124px
         }
     }
-`,C=o.div`
+`,P=o.div`
 position: absolute;
 background-image: url('${b}');
 width: 100%;
@@ -126,4 +126,4 @@ top: 0;
 left: 0;
 mix-blend-mode: multiply;
 filter: opacity(0.8) brightness(1.1);
-`;function N({ViewRef:e}){const w=u(),[h,m]=n.useState({x:0,y:0}),[v,d]=n.useState(!1),i=n.useRef(null);return n.useEffect(()=>{const c=()=>{if(i.current){const r=i.current.getBoundingClientRect(),f=r.left+r.width/2,x=e.current.scrollTop+r.top+r.height/2;m({x:f,y:x})}};return window.addEventListener("resize",c),()=>window.removeEventListener("resize",c)},[i]),t.jsxs(y,{ref:i,$mousePosition:w,$viewScrollTop:e.current?e.current.scrollTop:0,$center:h,$isHovering:v,onMouseEnter:()=>d(!0),onMouseLeave:()=>d(!1),children:[t.jsx(P,{children:t.jsx("img",{src:p,alt:"profile image"})}),t.jsxs(s,{children:[t.jsx(j,{children:"Ahyoon Kim"}),t.jsx(a,{children:"Front-End Developer"})]}),t.jsxs(s,{children:[t.jsx(l,{children:"E-mail"}),t.jsx(a,{children:"kay8563@gmail.com"})]}),t.jsxs(s,{children:[t.jsx(l,{children:"Github"}),t.jsx(a,{children:"https://github.com/code-kay"})]}),t.jsx(C,{})]})}export{N as default};
+`;function N({ViewRef:e}){const w=u(),[m,h]=n.useState({x:0,y:0}),[v,c]=n.useState(!1),r=n.useRef(null);return n.useEffect(()=>{const s=()=>{if(r.current){const i=r.current.getBoundingClientRect(),f=i.left+i.width/2,x=e.current.scrollTop+i.top+i.height/2;h({x:f,y:x})}};return s(),window.addEventListener("resize",s),()=>window.removeEventListener("resize",s)},[r]),t.jsxs(y,{ref:r,$mousePosition:w,$viewScrollTop:e.current?e.current.scrollTop:0,$center:m,$isHovering:v,onMouseEnter:()=>c(!0),onMouseLeave:()=>c(!1),children:[t.jsx(C,{children:t.jsx("img",{src:p,alt:"profile image"})}),t.jsxs(a,{children:[t.jsx(j,{children:"Ahyoon Kim"}),t.jsx(d,{children:"Front-End Developer"})]}),t.jsxs(a,{children:[t.jsx(l,{children:"E-mail"}),t.jsx(d,{children:"kay8563@gmail.com"})]}),t.jsxs(a,{children:[t.jsx(l,{children:"Github"}),t.jsx(d,{children:"https://github.com/code-kay"})]}),t.jsx(P,{})]})}export{N as default};

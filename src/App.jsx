@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: 'Inter';
     color: rgb(172, 174, 222);
-    cursor: none;
+    /* cursor: none; */
     scroll-behavior: smooth;
 
     @media (max-width: 768px) {

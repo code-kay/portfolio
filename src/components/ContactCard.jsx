@@ -26,8 +26,8 @@ const Card = styled.section.attrs(props => (
     } : {
         style: {
             transform: `rotateX(${(props.$mousePosition.y + props.$viewScrollTop - props.$center.y) / 20}deg) rotateY(${(props.$mousePosition.x - props.$center.x) / 20}deg)`,
-            borderRight: `${(props.$mousePosition.x - props.$center.x) / 1200}vw solid rgba(100,100,100,0.5)`,
-            borderLeft: `${(props.$center.x - props.$mousePosition.x) / 1200}vw solid rgba(100,100,100,0.5)`,
+            borderLeft: `${(props.$mousePosition.x - props.$center.x) / 1200}vw solid rgba(100,100,100,0.5)`,
+            borderRight: `${(props.$center.x - props.$mousePosition.x) / 1200}vw solid rgba(100,100,100,0.5)`,
             borderTop: `${(props.$mousePosition.y + props.$viewScrollTop - props.$center.y) / 1000}vw solid white`,
             borderBottom: `${(props.$center.y - props.$viewScrollTop - props.$mousePosition.y) / 1000}vw solid rgba(100,100,100,0.7)`
         }
@@ -172,7 +172,7 @@ function ContactCard ({ViewRef}) {
     const CardRef = useRef(null)
 
     useEffect(() => {
-        const handleResize = () => {
+        const setCardCenter = () => {
             if (CardRef.current) {
                 const rect = CardRef.current.getBoundingClientRect();
                 const centerX = rect.left + rect.width / 2;
@@ -180,8 +180,9 @@ function ContactCard ({ViewRef}) {
                 setCenter({ x: centerX, y: centerY });
             }
         }
-        window.addEventListener('resize', handleResize)
-        return () => window.removeEventListener('resize', handleResize)
+        setCardCenter()
+        window.addEventListener('resize', setCardCenter)
+        return () => window.removeEventListener('resize', setCardCenter)
     }, [CardRef]);
     
 
