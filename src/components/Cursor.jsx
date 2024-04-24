@@ -34,6 +34,7 @@ const CursorContainer = styled.div.attrs(props => ({
 
 const CursorPointer = styled(ToggleButton)`
     animation: ${breathAnimation} 2s infinite;
+    left: 0;
 `
 
 function Cursor() {

@@ -6,6 +6,7 @@ import useScrollPoints from './hook/useScrollPoints'
 import Background from './components/Background'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import cursor from './assets/images/display/cursor.webp'
 
 const BackgroundLargeDeco = lazy(()=> import('./components/BackgroundLargeDeco'))
 const Intro = lazy(()=> import('./components/Intro'))
@@ -23,7 +24,8 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: 'Inter';
     color: rgb(172, 174, 222);
-    /* cursor: none; */
+    cursor: url('${cursor}')
+      2 0, none;
     scroll-behavior: smooth;
 
     @media (max-width: 768px) {
