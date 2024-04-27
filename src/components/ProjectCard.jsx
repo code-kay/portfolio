@@ -199,7 +199,7 @@ function ProjectCard () {
                         <Tape />
                         <CardTitle>{project.name}</CardTitle>
                         {project.images ? <CardImg src={project.images[0].img} alt={project.name + ' 화면 이미지'}/>
-                        : <CardVid src={project.videos[0].vd} autoPlay loop muted  alt={project.name + ' 화면 영상'}/>}
+                        : <CardVid src={project.videos[0].vd} autoPlay loop muted playsinline alt={project.name + ' 화면 영상'}/>}
                         
                         <CardContent>{project.explanation.text}</CardContent>
                         <Tape />
