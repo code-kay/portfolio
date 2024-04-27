@@ -1,3 +1,8 @@
+import portfolio1 from '../videos/projects/portfolio1.webm'
+import portfolio2 from '../videos/projects/portfolio2.webm'
+import portfolio3 from '../videos/projects/portfolio3.webm'
+import portfolio4 from '../videos/projects/portfolio4.webm'
+
 import seolgi1 from '../images/projects/100seolgi1.webp'
 import seolgi2 from '../images/projects/100seolgi2.webp'
 import seolgi3 from '../images/projects/100seolgi3.webp'
@@ -21,7 +26,11 @@ import lotto1 from '../images/projects/lotto1.webp'
 // projects template
 // {
 //     name: '',
-//     explanation: '',
+//     explanation: { 
+//         text: '',
+//         duration: '',
+//         type: [],
+//     },
 //     images: [],
 //     usedSkills: [],
 //     links:{
@@ -35,8 +44,97 @@ import lotto1 from '../images/projects/lotto1.webp'
 
 export const projects = [
     {
+        name: '포트폴리오',
+        explanation: { 
+            text: '개인 포트폴리오 사이트',
+            duration: '2024.04',
+            type: ['개인 프로젝트', '진행중'],
+        },
+        videos: [
+            {
+                vd: portfolio1,
+                text: '다크 모드 전환'
+            },
+            {
+                vd: portfolio2,
+                text: '프로젝트 정보 모달'
+            },
+            {
+                vd: portfolio3,
+                text: '연락처 인터랙션'
+            },
+            {
+                vd: portfolio4,
+                text: 'Nav 스크롤 이동'
+            },
+        ],
+        usedSkills: ['React', 'React Context API', 'Styled-Components', 'Canvas API', 'Github Pages'],
+        links:{
+            deploy:'https://code-kay.github.io/portfolio/',
+            github:'https://github.com/code-kay/portfolio',
+            other: { 'Figma 프로토타입' : `https://www.figma.com/file/6pPq7XbY8IATUqY9SVFKEE/Ahyoon's-Portfolio?type=design&node-id=0%3A1&mode=design&t=9jwyDwtjh9hNt4Yy-1`}
+        },
+        myWork:{
+            '프로젝트 기획': [
+                'Figma를 활용하여 사이트 디자인 및 프토토타입 제작'
+            ],
+            '기능 개발' : [
+                'Keyframes, Canvas API를 사용해 보는 재미를 주는 화면',
+                'Context API를 활용하여 다크 모드와 마우스 위치를 전역 상태로 관리',
+                'Media Query를 이용한 반응형 구현',
+                'LightHouse를 활용한 최적화 작업 및 웹 표준, 웹 접근성 확보'
+            ],
+            'Problem Case 1' : [
+                'Safari에서 filter 속성이 적용되지 않는 현상 발견, -webkit-filter 속성 추가하여 해결',
+                'Windows Chrome 환경에서는 backdrop-filter가 작동하지 않는 현상 발견',
+                'filter 속성을 사용하여 비슷한 효과를 얻을 수 있도록 Background 컴포넌트 개선'
+            ]
+            ,
+            'Problem Case 2' : [
+                '개발 환경인 Mac, Iphone에서는 끊김 없이 부드럽게 이용 가능했으나 Windows에서는 끊김 발생',
+                '사용중인 이미지 파일을 Webp로 변환, Vite 설정을 통한 코드 스플릿, React lazy & Suspense를 적용하여 최적화 시도를 했으나 Windows에서는 개선되지 않음',
+                '마우스 커서의 위치를 Position의 top, left 속성을 사용하여 조정했는데, transform: translate()의 성능이 더 좋다는 내용을 접하고 코드 수정',
+                'Windows에서도 성능 개선됨 확인'
+            ]
+        },
+    },
+    {
+        name: '연산게임',
+        explanation: { 
+            text: '간단한 사칙 연산 문제를 풀 수 있는 웹 게임 사이트',
+            duration: '2024.03.12 ~ (미완)',
+            type: ['개인 프로젝트', '진행중'],
+        },
+        images: [
+            {
+                img: math1,
+                text: '게임 선택 및 플레이'
+            },
+            {
+                img: math2,
+                text: '게임 완료 및 다시 시작'
+            },
+        ],
+        usedSkills: ['React', 'Styled-Components', 'Netlify'],
+        links:{
+            deploy:'https://math-game-by-code-kay.netlify.app/',
+            github:'https://github.com/code-kay/Simple-Math-Game',
+        },
+        myWork:{
+            '기능 개발': [
+                'PC, Mobile 환경 모두 이용 가능',
+                'Netlify를 사용하여 배포',
+                '디자인 및 기능 개선 예정',
+            ]
+        },
+    },
+    {
         name: '백설기',
-        explanation: '100일 습관 만들기 해빗 트래커 웹 사이트',
+        explanation: { 
+            text: '100일 습관 만들기 해빗 트래커 웹 사이트',
+            duration: '2023.09 ~',
+            type: ['팀 프로젝트 (3인)', '진행중'],
+        },
         images: [
             {
                 img: seolgi1,
@@ -72,7 +170,11 @@ export const projects = [
     },
     {
         name: 'StoryHub',
-        explanation: 'GitHub처럼 협업을 통해 작품을 집필할 수 있는 웹 사이트',
+        explanation: { 
+            text: 'GitHub처럼 협업을 통해 작품을 집필할 수 있는 웹 사이트',
+            duration: '2021.02 ~ 2021.03 (4주)',
+            type: ['코드스테이츠 파이널 프로젝트', '팀 프로젝트 (4인)', '완료'],
+        },
         images: [
             {
                 img: storyhub1,
@@ -121,7 +223,11 @@ export const projects = [
     },
     {
         name: '목소리의 형태',
-        explanation: '목소리를 시각화하고 공유할 수 있는 웹 사이트',
+        explanation: { 
+            text: '목소리를 시각화하고 공유할 수 있는 웹 사이트',
+            duration: '2021.02 (2주)',
+            type: ['코드스테이츠 파이널 프로젝트', '팀 프로젝트 (4인)', '완료'],
+        },
         images: [
             {
                 img: ShapeOfVoice1,
@@ -166,34 +272,12 @@ export const projects = [
         }
     },
     {
-        name: '연산게임',
-        explanation: '간단한 사칙 연산 문제를 풀 수 있는 웹 게임 사이트',
-        images: [
-            {
-                img: math1,
-                text: '게임 선택 및 플레이'
-            },
-            {
-                img: math2,
-                text: '게임 완료 및 다시 시작'
-            },
-        ],
-        usedSkills: ['React', 'Styled-Components', 'Netlify'],
-        links:{
-            deploy:'https://math-game-by-code-kay.netlify.app/',
-            github:'https://github.com/code-kay/Simple-Math-Game',
-        },
-        myWork:{
-            '기능 개발': [
-                'PC, Mobile 환경 모두 이용 가능',
-                'Netlify를 사용하여 배포',
-                '디자인 및 기능 개선 예정',
-            ]
-        },
-    },
-    {
         name: '로 또 대 박',
-        explanation: '로또 번호를 랜덤으로 추천해주는 웹 사이트',
+        explanation: { 
+            text: '로또 번호를 랜덤으로 추천해주는 웹 사이트',
+            duration: '2020.10',
+            type: ['개인 프로젝트', '완료'],
+        },
         images: [
             {
                 img: lotto1,

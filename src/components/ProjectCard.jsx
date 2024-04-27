@@ -15,7 +15,7 @@ const CardContainer = styled.div`
     }
 `
 
-const CardHoverBefore =  keyframes`
+const CardHoverBefore = keyframes`
     30% {
         opacity: 0;
     }
@@ -125,6 +125,19 @@ const CardImg = styled.img`
     }
 `
 
+const CardVid = styled.video`
+    width: 22vw;
+    height: 24vw;
+    object-fit: cover;
+    background-color: gray;
+    border: 1px solid rgb(200,200,200);
+
+    @media (max-width: 768px) {
+        width: 140px;
+        height: 150px;
+    }
+`
+
 const CardContent = styled.p`
     font-size: min(24px, 1.6vw);
     padding: 1.2vw 1.6vw;
@@ -185,8 +198,10 @@ function ProjectCard () {
                     }} >
                         <Tape />
                         <CardTitle>{project.name}</CardTitle>
-                        <CardImg src={project.images[0].img} alt={project.name + ' 화면 이미지'}/>
-                        <CardContent>{project.explanation}</CardContent>
+                        {project.images ? <CardImg src={project.images[0].img} alt={project.name + ' 화면 이미지'}/>
+                        : <CardVid src={project.videos[0].vd} autoPlay loop muted  alt={project.name + ' 화면 영상'}/>}
+                        
+                        <CardContent>{project.explanation.text}</CardContent>
                         <Tape />
                     </Card>
                 ))}

@@ -101,6 +101,23 @@ const ModalSubTitle = styled.h2`
     margin-top: 2rem;
 `
 const ModalContent = styled.p`
+    & strong {
+        display: inline-block;
+        font-weight: 900;
+        margin-top: 8px;
+    }
+    & span {
+        font-family: 'Saira';
+        font-size: 14px;
+        font-weight: 200;
+        display: inline-block;
+        border: 1px solid black;
+        background: gray;
+        color: white;
+        border-radius: 4px;
+        padding: 0 6px;
+        margin: 8px 4px 0 8px;
+    }
 `
 const ModalImageContainer = styled.div`
     display: flex;
@@ -118,6 +135,13 @@ const ModalImage = styled.div`
     }
 
     & img {
+        width: 100%;
+        background-color: gray;
+        border: 1px solid rgb(200,200,200);
+        border-radius: 4px;
+    }
+
+    & video {
         width: 100%;
         background-color: gray;
         border: 1px solid rgb(200,200,200);
@@ -232,13 +256,24 @@ function ProjectModal ({ modalProject, setModalProject, setIsModalOn }) {
                 </ModalTitle>
                 <hr />
                 <ModalContent>
-                    {currentProject.explanation}
+                    {currentProject.explanation.text}
+                </ModalContent>
+                <ModalContent>
+                    <strong>프로젝트 기간:</strong> {currentProject.explanation.duration}
+                </ModalContent>
+                <ModalContent>
+                    {currentProject.explanation.type.map((el, idx) => <span key={currentProject.name + '-explanation_' + idx} >{el}</span>)}
                 </ModalContent>
                 <ModalImageContainer>
-                    {currentProject.images.map((image, idx) => (
+                    {currentProject.images ? currentProject.images.map((image, idx) => (
                         <ModalImage key={currentProject.name + '_image_' + idx}>
                             <img src={image.img} alt='' />
                             <div>✨{image.text}✨</div>
+                        </ModalImage>
+                    )) : currentProject.videos.map((video, idx) => (
+                        <ModalImage key={currentProject.name + '_video_' + idx}>
+                            <video src={video.vd} autoPlay loop muted alt='' />
+                            <div>✨{video.text}✨</div>
                         </ModalImage>
                     ))}
                 </ModalImageContainer>
@@ -262,7 +297,7 @@ function ProjectModal ({ modalProject, setModalProject, setIsModalOn }) {
                     ) : null}
                 </ModalLinkContainer>
                 <ModalSubTitle>
-                    작업 목록
+                    작업 내용
                 </ModalSubTitle>
                 <hr />
                 <ModalWorkList>

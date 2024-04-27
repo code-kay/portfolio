@@ -64,7 +64,7 @@ const Mountain = styled.div`
         border-radius: 0;
         border: none;
     }
-    &:last-child {
+    &:nth-child(8) {
         transform: none;
         width: 130vw;
         top: 15vw;
@@ -74,6 +74,16 @@ const Mountain = styled.div`
         box-shadow: inset 0vw -20vw 20vw ${props => props.$darkMode ? '#28365a' : '#ece7e2'};
         filter: blur(6vw);
     }
+    &:nth-child(9) {
+        transform: none;
+        width: 130vw;
+        height: 50vh;
+        top: 36vw;
+        left: -30vw;
+        border-radius: 0;
+        border: none;
+        background: ${props => props.$darkMode ? '#28365a' : '#ece7e2'};
+    }
 `
 
 function Footer () {
@@ -82,7 +92,7 @@ function Footer () {
     return (
         <StyledFooter $darkMode={darkMode} >
             <MountainContainer >
-                {new Array(8).fill(true).map((el, idx) => <Mountain key={'Mountain-'+idx} $darkMode={darkMode} />)}
+                {new Array(9).fill(true).map((el, idx) => <Mountain key={'Mountain-'+idx} $darkMode={darkMode} />)}
             </MountainContainer>
         </StyledFooter>
     )

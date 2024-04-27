@@ -3,6 +3,7 @@ import styled, { keyframes, css } from "styled-components";
 import paperPattern from "../assets/images/display/paperPattern.webp"
 import bear from "../assets/images/display/bear-transparent.webp"
 import { useMousePosition } from "../context/MousePositonContext";
+import { EmailForm } from "./EmailForm";
 
 const CardHoverAnimation = keyframes`
     30%{
@@ -12,6 +13,15 @@ const CardHoverAnimation = keyframes`
     }
     60% {
         transform: scale(1);
+    }
+`
+
+const CardHoverBefore = keyframes`
+    30% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
     }
 `
 
@@ -45,7 +55,6 @@ const Card = styled.section.attrs(props => (
     padding: 3vw;
     background-color: #ece7e2;
     border-radius: 10px;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -55,6 +64,7 @@ const Card = styled.section.attrs(props => (
 
     &::before {
         position: absolute;
+        border-radius: 10px 10px 0 0;
         content: '';
         width: 100%;
         top: 0;
@@ -76,10 +86,36 @@ const Card = styled.section.attrs(props => (
             -0.12vw  0.12vw 0 white,
             0.12vw  0.12vw 0 white;
     }
+    
+    & form * {
+        text-align: start;
+    }
+
+    button {
+        text-align: center;
+    }
 
     &:hover {
         transform: rotateX(0deg) rotateY(0deg);
-        animation: ${CardHoverAnimation} 1.5s infinite;
+        ${props => props.$isEmailOn ? '' : css`animation: ${CardHoverAnimation} 1.5s infinite;`}
+        ${props => props.$isEmailOn ? '' : css`
+        &::after {
+            font-family: "Gowun Batang";
+            content: '클릭해서 메일 보내기!';
+            opacity: 0;
+            position: absolute;
+            left: -12px;
+            bottom: 12px;
+            padding: 8px 12px;
+            background: rgb(172, 174, 222);
+            box-shadow: 2px 2px 8px rgba(172, 174, 222);
+            color: white;
+            border-radius: 4px;
+            border: 1px solid white;
+            animation: ${CardHoverBefore} 1s 1 forwards;
+        }
+        `}
+        
     }
     @media (max-width: 768px) {
         width: 330px;
@@ -169,6 +205,7 @@ function ContactCard ({ViewRef}) {
     const mousePosition = useMousePosition()
     const [center, setCenter] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
+    const [isEmailOn, setIsEmailOn] = useState(false)
     const CardRef = useRef(null)
 
     useEffect(() => {
@@ -192,8 +229,10 @@ function ContactCard ({ViewRef}) {
             $viewScrollTop={ViewRef.current ? ViewRef.current.scrollTop : 0}
             $center={center}
             $isHovering={isHovering}
+            $isEmailOn={isEmailOn}
             onMouseEnter={()=> setIsHovering(true)}
             onMouseLeave={()=> setIsHovering(false)}
+            onClick={() => setIsEmailOn(true)}
         >
             <CardImg>
                 <img src={bear} alt="profile image" />
@@ -211,6 +250,7 @@ function ContactCard ({ViewRef}) {
                 <CardContent>https://github.com/code-kay</CardContent>
             </CardSection>
             <PaperPattern></PaperPattern>
+            {isEmailOn ? <EmailForm setIsEmailOn={setIsEmailOn} isEmailOn={isEmailOn} CardRef={CardRef} /> : null}
         </Card>
     )
 }
