@@ -272,7 +272,7 @@ function ProjectModal ({ modalProject, setModalProject, setIsModalOn }) {
                         </ModalImage>
                     )) : currentProject.videos.map((video, idx) => (
                         <ModalImage key={currentProject.name + '_video_' + idx}>
-                            <video src={video.vd} autoPlay loop muted playsinline alt='' />
+                            <video src={video.vd} autoPlay loop muted playsInline alt='' />
                             <div>✨{video.text}✨</div>
                         </ModalImage>
                     ))}
