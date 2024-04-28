@@ -3,7 +3,7 @@ import { useTheme } from "../context/ThemeContext"
 
 const StyledFooter = styled.footer`
     position: relative;
-    height: 36vw;
+    height: 38vw;
     overflow: hidden;
     filter: drop-shadow(0 0 12vw ${props => props.$darkMode ? 'rgba(220,80,60, 0.4)' : 'rgb(220, 180, 210)'});
 `
@@ -74,16 +74,6 @@ const Mountain = styled.div`
         box-shadow: inset 0vw -20vw 20vw ${props => props.$darkMode ? '#28365a' : '#ece7e2'};
         filter: blur(6vw);
     }
-    &:nth-child(9) {
-        transform: none;
-        width: 130vw;
-        height: 50vh;
-        top: 36vw;
-        left: -30vw;
-        border-radius: 0;
-        border: none;
-        background: ${props => props.$darkMode ? '#28365a' : '#ece7e2'};
-    }
 `
 
 function Footer () {
@@ -92,7 +82,7 @@ function Footer () {
     return (
         <StyledFooter $darkMode={darkMode} >
             <MountainContainer >
-                {new Array(9).fill(true).map((el, idx) => <Mountain key={'Mountain-'+idx} $darkMode={darkMode} />)}
+                {new Array(8).fill(true).map((el, idx) => <Mountain key={'Mountain-'+idx} $darkMode={darkMode} />)}
             </MountainContainer>
         </StyledFooter>
     )

@@ -26,12 +26,12 @@ const CardHoverBefore = keyframes`
 `
 
 const Card = styled.section.attrs(props => (
-    props.$center.y === 0 || props.$isHovering ? {
+    props.$center.y === 0 || props.$isHovering || props.$isFliping ? {
         style: {
             transform: `rotateX(0deg) rotateY(0deg)`,
             filter: `drop-shadow(0 0 4vw rgba(172, 174, 222, 0.5))`,
-            boxShadow: `0 0 0.3vw 0.3vw rgba(172, 174, 222)`,
             transition: `transform 0.3s, filter 0.3s, box-shadow 0.3s`,
+            border: `none`
         }
     } : {
         style: {
@@ -49,32 +49,11 @@ const Card = styled.section.attrs(props => (
         font-weight: normal;
         font-style: normal;
     }
-    position: relative;
     width: 44vw;
     height: 28vw;
-    padding: 3vw;
-    background-color: #ece7e2;
     border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    gap: 1vw;
-    filter: drop-shadow(0.5vw 0.5vw 2vw rgba(172, 174, 222, 0.5));
-
-
-    &::before {
-        position: absolute;
-        border-radius: 10px 10px 0 0;
-        content: '';
-        width: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 58%;
-        background-color: #3e507f;
-        border-bottom: 1vw groove #8899c5;
-        z-index: -1;
-    }
+    perspective: 1000px;
+    filter: drop-shadow(0 0 2vw rgba(172, 174, 222, 0.5));
 
     & * {
         font-family: 'KNPSKkomi-Regular00';
@@ -120,7 +99,6 @@ const Card = styled.section.attrs(props => (
     @media (max-width: 768px) {
         width: 330px;
         height: 220px;
-        padding: 23px;
 
         &::before {
             bottom: 125px;
@@ -128,6 +106,55 @@ const Card = styled.section.attrs(props => (
         }
     }
 `
+
+const CardFront = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 3vw;
+    background-color: #ece7e2;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 1vw;
+    backface-visibility: hidden;
+    transform: ${props => props.$isEmailOn ? 'rotateY(-180deg);' : 'rotateY(0deg);'};
+    transition: transform 1s;
+    filter: drop-shadow(0.5vw 0.5vw 2vw rgba(172, 174, 222, 0.5));
+
+    &::before {
+        position: absolute;
+        border-radius: 10px 10px 0 0;
+        content: '';
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 58%;
+        background-color: #3e507f;
+        border-bottom: 1vw groove #8899c5;
+        z-index: -1;
+    }
+    
+    @media (max-width: 768px) {
+        padding: 23px;
+    }
+`
+const CardBack = styled.div`
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    transform: ${props => props.$isEmailOn ? 'rotateY(0deg);' : 'rotateY(180deg);'};
+    transition: transform 1s;
+    filter: drop-shadow(0.5vw 0.5vw 2vw rgba(172, 174, 222, 0.5));
+`
+
+
 
 const CardSection = styled.section`
 `
@@ -192,6 +219,7 @@ const CardImg = styled.div`
 
 const PaperPattern = styled.div`
 position: absolute;
+border-radius: 10px;
 background-image: url('${paperPattern}');
 width: 100%;
 height: 100%;
@@ -201,10 +229,13 @@ mix-blend-mode: multiply;
 filter: opacity(0.8) brightness(1.1);
 `
 
+
+
 function ContactCard ({ViewRef}) {
     const mousePosition = useMousePosition()
     const [center, setCenter] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
+    const [isFliping, setIsFliping] = useState(false)
     const [isEmailOn, setIsEmailOn] = useState(false)
     const CardRef = useRef(null)
 
@@ -230,27 +261,36 @@ function ContactCard ({ViewRef}) {
             $center={center}
             $isHovering={isHovering}
             $isEmailOn={isEmailOn}
+            $isFliping={isFliping}
             onMouseEnter={()=> setIsHovering(true)}
             onMouseLeave={()=> setIsHovering(false)}
-            onClick={() => setIsEmailOn(true)}
+            onClick={() => {
+                setIsEmailOn(true)
+                setIsFliping(true)
+                setTimeout(() => setIsFliping(false), 1000)
+            }}
         >
-            <CardImg>
-                <img src={bear} alt="profile image" />
-            </CardImg>
-            <CardSection>
-                <CardName>Ahyoon Kim</CardName>
-                <CardContent>Front-End Developer</CardContent>
-            </CardSection>
-            <CardSection>
-                <CardTitle>E-mail</CardTitle>
-                <CardContent>kay8563@gmail.com</CardContent>
-            </CardSection>
-            <CardSection>
-                <CardTitle>Github</CardTitle>
-                <CardContent>https://github.com/code-kay</CardContent>
-            </CardSection>
-            <PaperPattern></PaperPattern>
-            {isEmailOn ? <EmailForm setIsEmailOn={setIsEmailOn} isEmailOn={isEmailOn} CardRef={CardRef} /> : null}
+            <CardFront $isEmailOn={isEmailOn}>
+                <CardImg>
+                    <img src={bear} alt="profile image" />
+                </CardImg>
+                <CardSection>
+                    <CardName>Ahyoon Kim</CardName>
+                    <CardContent>Front-End Developer</CardContent>
+                </CardSection>
+                <CardSection>
+                    <CardTitle>E-mail</CardTitle>
+                    <CardContent>kay8563@gmail.com</CardContent>
+                </CardSection>
+                <CardSection>
+                    <CardTitle>Github</CardTitle>
+                    <CardContent>https://github.com/code-kay</CardContent>
+                </CardSection>
+                <PaperPattern></PaperPattern>
+            </CardFront>
+            <CardBack $isEmailOn={isEmailOn}>
+                <EmailForm setIsEmailOn={setIsEmailOn} isEmailOn={isEmailOn} CardRef={CardRef} setIsFliping={setIsFliping} />
+            </CardBack>
         </Card>
     )
 }

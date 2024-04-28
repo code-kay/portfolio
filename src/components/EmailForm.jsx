@@ -5,19 +5,16 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 const StyledEmailForm = styled.form`
-    position: absolute;
     width: 100%;
     height: 100%;
     background: white;
     padding: 5%;
-    margin: -3vw;
     font-size: max(1.8vw, 1rem);
     display: grid;
     grid-template-rows: auto auto 1fr;
     border-radius: 10px;
 
     @media (max-width: 768px) {
-        margin: -23px;
         font-size: 1rem;
     }
 
@@ -92,7 +89,7 @@ const Sending = styled.div`
     font-size: max(2.6vw, 1.5rem);;
 `
 
-export const EmailForm = ({setIsEmailOn, CardRef}) => {
+export const EmailForm = ({setIsEmailOn, setIsFliping, CardRef}) => {
     const form = useRef()
     const [sending, setSending] = useState(false)
     const [info, setInfo] = useState('')
@@ -115,6 +112,8 @@ export const EmailForm = ({setIsEmailOn, CardRef}) => {
     const handleClickOutside = (event) => {
         if (form.current && !form.current.contains(event.target) && !CardRef.current.contains(event.target)) {
             setIsEmailOn(false)
+            setIsFliping(true)
+            setTimeout(() => setIsFliping(false), 1000)
         }
     };
     
